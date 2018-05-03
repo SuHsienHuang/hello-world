@@ -1,3 +1,3 @@
 import requests
-rs=requests.get("http://www.must.edu.tw")
+rs=requests.get("http://www.im.must.edu.tw")
 print(rs.text)
