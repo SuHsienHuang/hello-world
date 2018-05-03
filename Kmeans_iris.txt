@@ -1,0 +1,30 @@
+from sklearn import cluster, datasets, metrics
+iris=datasets.load_iris()
+iris_X=iris.data
+
+kmeans_fit=cluster.KMeans(n_clusters=3).fit(iris_X)
+cluster_labels=kmeans_fit.Labels_
+
+
+#silhouette score¶V±µªñ1¶V¦n
+silhouette_avg=metrics.silhouette_score(iris_X, cluster_labels)
+print(silhouette_avg)
+
+
+
+
+from sklearn import cluster, datasets, metrics
+import matplotlib.pyplot as plt
+iris=datasets.load_iris()
+iris_X=iris.data
+
+silhouette_avgs=[]
+ks=range(2,11)
+for k in ks:
+    kmeans_fit=cluster.KMeans(n_clusters=k).fit(iris_X)
+    cluster_labels=kmeans_fit.labels_
+    silhouette_avg=metrics.silhouette_score(iris_X, cluster_labels)
+    silhouette_avgs.append(silhouette_avg)
+plt.bar(ks,silhouette_avgs)
+plt.show()
+print(silhouette_avgs)
